@@ -1,5 +1,6 @@
 package com.mmzs.springboot.springbootschedule.controller;
 
+import com.mmzs.springboot.springbootschedule.constants.BackupConstants;
 import com.mmzs.springboot.springbootschedule.dao.ICronMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -12,7 +13,9 @@ import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 动态定时任务
@@ -21,6 +24,9 @@ import java.time.LocalDateTime;
 @Configuration      //1.主要用于标记配置类，兼备Component的效果。
 @EnableScheduling   // 2.开启定时任务
 public class DynamicScheduleTask implements SchedulingConfigurer {
+
+    @Autowired
+    MySqlBackupController backupController;
 
     @Mapper
     public interface CronMapper {
@@ -47,8 +53,10 @@ public class DynamicScheduleTask implements SchedulingConfigurer {
                     String cron = cronMapper.getCron();
                     //2.2 合法性校验.
                     if (!StringUtils.isEmpty(cron)) {
-                        // Omitted Code ..
-                        System.out.println("welconme to you!");
+                        // 根据数据库的定时周期，来定时备份数据库 2019-12-23
+                        String backupFodlerName = BackupConstants.DEFAULT_BACKUP_NAME + "_" + (new SimpleDateFormat(BackupConstants.DATE_FORMAT)).format(new Date());
+//                        return backup(backupFodlerName);
+                        backupController.backup(backupFodlerName);
                     }
                     //2.3 返回执行周期(Date)
                     return new CronTrigger(cron).nextExecutionTime(triggerContext);

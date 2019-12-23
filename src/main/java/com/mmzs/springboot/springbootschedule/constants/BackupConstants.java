@@ -12,8 +12,10 @@ public interface BackupConstants {
 	/** 备份目录名称 */
 	public static final String BACKUP_FOLDER_NAME = "mango_backup";
 	/** 备份目录 */
+	//获取当前用户的根目录下
 //	public static final String BACKUP_FOLDER = System.getProperty("user.home") + File.separator + BACKUP_FOLDER_NAME + File.separator;
-	public static final String BACKUP_FOLDER = "D:/" + File.separator + BACKUP_FOLDER_NAME + File.separator;
+	//备份到指定的目录下
+	public static final String BACKUP_FOLDER = "D:" + File.separator + BACKUP_FOLDER_NAME + File.separator;
 	/** 还原目录，默认就是备份目录 */
 	public static final String RESTORE_FOLDER = BACKUP_FOLDER;
 	/** 日期格式 */

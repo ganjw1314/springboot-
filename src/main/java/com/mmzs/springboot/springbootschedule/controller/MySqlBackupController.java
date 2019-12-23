@@ -41,7 +41,7 @@ public class MySqlBackupController {
 		return backup(backupFodlerName);
 	}
 
-	private HttpResult backup(String backupFodlerName) {
+	public HttpResult backup(String backupFodlerName) {
 		String host = properties.getHost();
 		String userName = properties.getUserName();
 		String password = properties.getPassword();
