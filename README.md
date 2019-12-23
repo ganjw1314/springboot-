@@ -22,16 +22,27 @@ SpringBoot之定时任务详解
 3.部分参数配置说明
 
 spring.application.name=bakcup
+
 #定时备份的数据库配置
+
 mango.backup.datasource.host= 备份的MySQL的IP地址
+
 mango.backup.datasource.userName= MySQL的连接用户名
+
 mango.backup.datasource.password= MySQL的连接密码
+
 mango.backup.datasource.database= 备份的数据库
+
 spring.datasource.driverClassName=com.mysql.jdbc.Driver
+
 #如果是高版本的MySQL，需要配置成如下，不然会报版本不兼容的问题
+
 spring.datasource.url=jdbc:mysql://localhost:3306/socks?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
 spring.datasource.username= .....
+
 spring.datasource.password=....
+
 
 4.需要的软件环境
 
